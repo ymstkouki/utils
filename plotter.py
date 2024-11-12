@@ -1,3 +1,6 @@
+#ファイルから読み込んだデータのうち指定された列をプロット
+
+
 import os
 import csv
 import argparse
@@ -7,19 +10,24 @@ import matplotlib.pyplot as plt
 
 
 #ファイルからデータの読み込み
+#最初が#で始まる行はコメントとして読み飛ばす
 def readfile(filename):
     data = []
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            d = [float(val) for val in row if val != '']
-            data.append(d)
+            if row[0] == '#':
+                continue
+            else:
+                d = [float(val) for val in row if val != '']
+                data.append(d)
     data = np.array(data)
 
     return data
 
 #指定されたchのデータをプロット
-def plotter(data, ch):
+def plotter(filename, ch):
+    data = readfile(filename)
     for i in ch:
         x = list(range(len(data[:, i])))
         plt.plot(x, data[:, i], label=f'ch{i}')
@@ -36,11 +44,12 @@ def main():
 
     filename = os.path.expanduser(args.filename)
     ch = args.ch
-    data = readfile(filename)
-    plotter(data, ch)
+    plotter(filename, ch)
+
 
 if __name__ == '__main__':
     main()
+
 
 """
 ipythonで実行する例
