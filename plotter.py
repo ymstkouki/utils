@@ -8,22 +8,8 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
+from readfile import *
 
-#ファイルからデータの読み込み
-#最初が#で始まる行はコメントとして読み飛ばす
-def readfile(filename):
-    data = []
-    with open(filename, 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            if row[0] == '#':
-                continue
-            else:
-                d = [float(val) for val in row if val != '']
-                data.append(d)
-    data = np.array(data)
-
-    return data
 
 #指定されたchのデータをプロット
 def plotter(filename, ch):
