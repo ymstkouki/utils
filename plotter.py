@@ -26,8 +26,6 @@ def main():
     parser.add_argument('filename', type=str, help='data file')
     parser.add_argument('ch', nargs='+', type=int, help='selected channels')
     args = parser.parse_args()
-    print(args.filename)
-
     filename = os.path.expanduser(args.filename)
     ch = args.ch
     plotter(filename, ch)
