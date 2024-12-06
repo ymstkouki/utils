@@ -1,1 +1,6 @@
-#個々の端末でのマイナーチェンジは無視
+#個々の端末でのマイナーチェンジ
+
+
+#poetry関連
+poetry.lock
+pyproject.toml
