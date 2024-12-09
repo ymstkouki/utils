@@ -4,3 +4,5 @@
 #poetry関連
 poetry.lock
 pyproject.toml
+
+__pycache__/
